@@ -33,7 +33,7 @@ pub fn analyze_trust_scores(records: &[Record], nodes_to_analyze: &[i32]) -> f64
     total_average_score / count as f64
 }
 
-// Function for printing trust scores, for the sake of repeating my code so many times 
+// Function for printing trust scores, for the sake of not repeating my code so many times 
 pub fn calculate_and_print_group_trust_scores(records: &[Record], nodes: &[i32], group_name: &str) {
     let average_trust = trust_analysis::analyze_trust_scores(records, nodes);
     println!("Average Trust Score for {} group: {:.4}", group_name, average_trust);
