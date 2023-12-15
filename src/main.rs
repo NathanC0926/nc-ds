@@ -33,6 +33,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("Node {} - Unweighted In-Degree: {}, Unweighted Out-Degree: {}, Mean Weighted In-Degree: {:.2}, Mean Weighted Out-Degree: {:.2}", node, in_degree, out_degree, mean_in_weight, mean_out_weight);
     }
 
+    // These are obtained from the output above
     let groups = vec![
         (vec![1, 8, 30], "top_in_4_or_5"),
         (vec![2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 22, 25, 26, 33, 38, 40, 43, 46, 58, 177], "top_in_3"),
