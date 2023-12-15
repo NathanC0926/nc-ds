@@ -5,6 +5,21 @@ use rustworkx_core::centrality::{betweenness_centrality, closeness_centrality};
 use simple_pagerank::Pagerank;
 use super::csv_parsing::Record; // Import Record struct from csv_parsing module
 
+// So we have to create a directed graph with the data
+pub fn construct_graph(records: &[Record]) -> DiGraph<i32, i32> {
+
+    let mut graph = DiGraph::<i32, i32>::new();
+    let mut node_map: HashMap<i32, NodeIndex> = HashMap::new();
+
+    for record in records {
+        let source_index = *node_map.entry(record.source).or_insert_with(|| graph.add_node(record.source));
+        let target_index = *node_map.entry(record.target).or_insert_with(|| graph.add_node(record.target));
+        graph.add_edge(source_index, target_index, record.rating);
+    }
+
+    graph
+}
+
 // Function to calculate and return the degree centrality of nodes in a directed graph
 // Outputs (node, unweighted in-degree, unweighted out-degree, mean weighted in-degree, mean weighted out-degree)
 pub fn calculate_degree_centrality(graph: &DiGraph<i32, i32>) -> (Vec<(i32, usize, usize, f32, f32)>, Vec<(i32, usize, usize, f32, f32)>) {
@@ -41,22 +56,6 @@ pub fn calculate_degree_centrality(graph: &DiGraph<i32, i32>) -> (Vec<(i32, usiz
 
     // Return the sorted lists of nodes by in-degree and out-degree
     (in_degree_sorted, out_degree_sorted)
-}
-
-// simple_pagerank does not support the pet graph data structures.
-// So we have to recreate a directed graph with the method that it supports
-pub fn construct_graph(records: &[Record]) -> DiGraph<i32, i32> {
-
-    let mut graph = DiGraph::<i32, i32>::new();
-    let mut node_map: HashMap<i32, NodeIndex> = HashMap::new();
-
-    for record in records {
-        let source_index = *node_map.entry(record.source).or_insert_with(|| graph.add_node(record.source));
-        let target_index = *node_map.entry(record.target).or_insert_with(|| graph.add_node(record.target));
-        graph.add_edge(source_index, target_index, record.rating);
-    }
-
-    graph
 }
 
 // https://crates.io/crates/simple-pagerank
