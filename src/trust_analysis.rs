@@ -53,7 +53,7 @@ fn test_calculate_network_average_trust() {
     ];
 
     let average_trust = trust_analysis::calculate_network_average_trust(&records);
-    let expected_average = 3.0; 
+    let expected_average = 3.0; // (5+3+4+2+1)/5 = 3
 
     assert_eq!(average_trust, expected_average);
 }
