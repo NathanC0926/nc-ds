@@ -53,7 +53,7 @@ fn test_calculate_network_average_trust() {
     ];
 
     let average_trust = trust_analysis::calculate_network_average_trust(&records);
-    let expected_average = 3.0; // Replace with the expected average based on your test data
+    let expected_average = 3.0; 
 
     assert_eq!(average_trust, expected_average);
 }
@@ -65,13 +65,12 @@ fn test_calculate_network_average_trust() {
             Record { source: 3, target: 2, rating: 4 },
             Record { source: 4, target: 1, rating: 2 },
             Record { source: 2, target: 4, rating: 1 },
-            // Add more records if necessary
         ];
 
-        let nodes_to_analyze = vec![1,2]; // Choose nodes to analyze
+        let nodes_to_analyze = vec![1,2]; 
         let average_score = analyze_trust_scores(&records, &nodes_to_analyze);
 
-        let expected_average = 3.25 ;
+        let expected_average = 3.25 ; // node 1: 2, node 2: 5+4/2 = 4.5, (4.5+2)/2 = 3.5
 
         assert_eq!(average_score, expected_average);
     }
