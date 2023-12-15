@@ -90,6 +90,8 @@ pub fn calculate_and_print_betweenness_centrality(graph: &DiGraph<i32, i32>) {
     }
 }
 
+// https://docs.rs/rustworkx-core/latest/rustworkx_core/centrality/fn.closeness_centrality.html
+// Compute the closeness centrality of all nodes in a graph.
 pub fn calculate_and_print_closeness_centrality(graph: &DiGraph<i32, i32>) {
     let closeness_scores = closeness_centrality(graph, true);
     let mut centrality_cscores: Vec<(NodeIndex, f64)> = graph.node_indices()
