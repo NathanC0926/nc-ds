@@ -121,16 +121,14 @@ mod tests {
 
         graph.add_edge(node_a, node_b, 1);
         graph.add_edge(node_b, node_c, 2);
-        graph.add_edge(node_c, node_a, 3);
+        graph.add_edge(node_c, node_a,3);
 
         // Call your function to calculate degree centrality
         let (in_degree_sorted, out_degree_sorted) = calculate_degree_centrality(&graph);
-
-        // Perform assertions based on your expected results
-        // Replace these with your expected results
+        
         assert_eq!(in_degree_sorted, vec![
-            (1, 1, 1, 3.0, 1.0),
-            (2, 1, 1, 1.0, 2.0),
+            (1, 1, 1, 3.0, 1.0), // node 1, indegree 1, outdegree 1, mean weighted in-degree: 3, mean weighted out-degree: 1 
+            (2, 1, 1, 1.0, 2.0), // same as node 1 
             (3, 1, 1, 2.0, 3.0)
         ]);
     }
